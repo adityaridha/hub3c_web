@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ApexVcsIndex">
+    <index-move-record>
+      <option name="firstPath" value="/model/__pycache__" />
+      <option name="path" value="/page_model/__pycache__" />
+    </index-move-record>
+    <index-move-record>
+      <option name="firstPath" value="/log_test/login_failed.png" />
+      <option name="path" value="/test_report/login_failed.png" />
+    </index-move-record>
+    <index-move-record>
+      <option name="firstPath" value="/model/step_builder.py" />
+      <option name="path" value="/page_model/step_builder.py" />
+    </index-move-record>
+    <index-move-record>
+      <option name="firstPath" value="/model/__init__.py" />
+      <option name="path" value="/page_model/__init__.py" />
+    </index-move-record>
+    <index-move-record>
+      <option name="firstPath" value="/model/login.py" />
+      <option name="path" value="/page_model/login.py" />
+    </index-move-record>
+  </component>
+</project>
