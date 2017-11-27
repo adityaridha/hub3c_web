@@ -25,7 +25,7 @@ class register (object) :
             self.driver.find_element_by_id(self.field_first_name_id)
             self.driver.find_element_by_id(self.field_last_name_id)
             self.driver.find_element_by_id(self.field_email_address_id)
-            self.driver.find_element_by_id(self.field_password_idpassword_id)
+            self.driver.find_element_by_id(self.field_password_id)
             self.driver.find_element_by_id(self.field_repeat_password_id)
             self.driver.find_element_by_xpath(self.button_tnc)
             self.driver.find_element_by_id(self.button_create_id)
