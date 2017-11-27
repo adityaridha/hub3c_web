@@ -11,6 +11,7 @@ from page_model import Registration
 from connection import Connection
 from faker import Factory
 
+
 driver = Connection.driver
 regis = Registration(driver)
 
@@ -238,7 +239,11 @@ class TestRegistration():
         regis.input_email_address("automation.hub999mailinator.com")
         regis.input_password(self.password)
         regis.input_repeat_password(self.password)
+        regis.tick_tnc()
+        regis.create_account()
+        regis.is_email_address_invalid()
 
+        time.sleep(2)
         #without dot (.) after @
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis.input_company_name(self.company_name)
@@ -247,3 +252,7 @@ class TestRegistration():
         regis.input_email_address("automation.hub999@mailinator")
         regis.input_password(self.password)
         regis.input_repeat_password(self.password)
+        regis.tick_tnc()
+        regis.create_account()
+        regis.is_email_address_invalid()
+
