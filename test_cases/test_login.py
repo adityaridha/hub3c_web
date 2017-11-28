@@ -16,7 +16,9 @@ login = Login(driver)
 class TestLogin():
 
     def test_login_logout(self):
-        driver.get("https://test-auth-d2kluue7bb.hub3c.com")
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/")
         login.input_email("marsha@freehub.com")
         login.input_password("ZXasqw12")
         login.sign_in()
+
+

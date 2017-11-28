@@ -6,7 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import pytest
 
-class register (object) :
+class Registration(object):
+
     field_company_name_id = "BusinessName"
     field_first_name_id = "FirstName"
     field_last_name_id = "LastName"
