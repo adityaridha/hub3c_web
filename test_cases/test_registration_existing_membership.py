@@ -117,7 +117,7 @@ class TestRegistrationExistingMembership():
         regis.create_account()
         regis.is_registration_success()
 
-    #10 Register by inputting all mandatory fields (w/o "Salutation")
+    #10 Register by inputting all mandatory field (w/o "Salutation")
     def test_registration_mandatory_only(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         self.test_login_success()
