@@ -20,5 +20,6 @@ class TestLogin():
         login.input_email("marsha@freehub.com")
         login.input_password("ZXasqw12")
         login.sign_in()
+        login.is_login_success()
 
 
