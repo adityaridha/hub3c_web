@@ -255,4 +255,3 @@ class TestRegistration():
         regis.tick_tnc()
         regis.create_account()
         regis.is_email_address_invalid()
-

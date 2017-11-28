@@ -1,0 +1,4 @@
+{
+  "test_cases/test_login.py::TestLogin::()": true,
+  "test_cases/test_registration.py::TestRegistration::()::test_registration": true
+}

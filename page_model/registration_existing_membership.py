@@ -12,7 +12,7 @@ class Registration_Existing_Membership (object):
     field_email_address_id = "ExistingUserName"
     field_password_id = "ExistingPassword"
     button_login_id = "button-login"
-    dropdown_salutation = "html/body/div[1]/div[3]/div/div[2]/div[1]/form/div[2]/span/span"
+    dropdown_salutation = "/html/body/div[1]/div[3]/div[2]/div[2]/div[1]/form/div[2]/span"
     dropdown_select_salutation = "//*[contains(text(), 'Please select salutation')]"
     #field_first_name_id = "FirstName"
     #field_last_name_id = "LastName"
@@ -53,7 +53,8 @@ class Registration_Existing_Membership (object):
     def select_salutation(self):
         salutation_el = self.driver.find_element_by_xpath(self.dropdown_salutation)
         salutation_el.click()
-        salutation_el.send_keys(Keys.DOWN + Keys.ENTER)
+        time.sleep(2)
+        salutation_el.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
         #time.sleep(1)
         #mr_el = self.driver.find_element_by_xpath(self.dropdown_salutation_select_salutation)
         #mr_el.click()
