@@ -7,8 +7,6 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import pytest
 import time
 
-from page_model import Login
-
 class Registration(object):
 
     field_company_name_id = "BusinessName"
