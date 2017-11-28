@@ -28,3 +28,4 @@ class TestRegistration():
         regis.tick_tnc()
         regis.create_account()
         regis.is_registration_success()
+
