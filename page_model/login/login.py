@@ -56,10 +56,10 @@ class Login(object):
         try:
             WebDriverWait(self.driver, 30).until(
                 EC.presence_of_element_located((By.XPATH, ".//*[@id='new-message-link']")))
-            print("Login success")
+            print("test_login success")
         except TimeoutException:
             self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\login_failed.png")
-            pytest.fail("Login Failed")
+            pytest.fail("test_login Failed")
 
     def is_login_fail(self):
         try:
@@ -92,10 +92,10 @@ class Login(object):
         try:
             WebDriverWait(self.driver, 30).until(
                 EC.presence_of_element_located((By.ID, "BusinessName")))
-            print("Redirect to Registration page success")
+            print("Redirect to test_registration page success")
         except TimeoutException:
             self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\directed_to_registration_page_failed.png")
-            pytest.fail("Redirect to Registration page failed")
+            pytest.fail("Redirect to test_registration page failed")
 
     def is_directed_to_forgot_password_page(self):
         try:

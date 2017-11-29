@@ -2,22 +2,20 @@ import sys
 import os
 import pytest
 import time
+import page_model
 from pathlib import Path
 root = Path(__file__).parents[1]   #get the root directory
 root_model = str(root)
 sys.path.append(root_model)
 
-from page_model import Login
-from page_model import Registration
-from page_model import Registration_Existing_Membership
+import page_model
 from connection import Connection
 from faker import Factory
 
-
 driver = Connection.driver
-login = Login(driver)
-regis = Registration(driver)
-regis_exist = Registration_Existing_Membership(driver)
+login = page_model.Login(driver)
+regis = page_model.Registration(driver)
+regis_exist = page_model.Registration_Existing_Membership(driver)
 
 class TestRegistrationExistingMembership():
 
@@ -32,7 +30,7 @@ class TestRegistrationExistingMembership():
     email = "automation.hub1@mailinator.com"
     password = "ZXasqw12"
 
-    #1  Login using registered email & correct password
+    #1  test_login using registered email & correct password
     def test_login_success(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.input_email_address(self.email)
@@ -40,7 +38,7 @@ class TestRegistrationExistingMembership():
         regis_exist.click_login()
         regis_exist.is_directed_to_registration_page()
 
-    #2  Login using registered email & wrong password
+    #2  test_login using registered email & wrong password
     def test_login_fail(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.input_email_address(self.email)
@@ -48,7 +46,7 @@ class TestRegistrationExistingMembership():
         regis_exist.click_login()
         regis_exist.is_login_fail()
 
-    #3  Login using registered email & correct password, after login failed with >1 attempts
+    #3  test_login using registered email & correct password, after login failed with >1 attempts
     def test_login_success_after_failed(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.input_email_address(self.email)
@@ -65,7 +63,7 @@ class TestRegistrationExistingMembership():
         regis_exist.click_login()
         regis_exist.is_directed_to_registration_page()
 
-    #4  Login using unregistered email
+    #4  test_login using unregistered email
     def test_login_unregistered_email(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.input_email_address("automation.hub999@mailinator.com")
@@ -73,7 +71,7 @@ class TestRegistrationExistingMembership():
         regis_exist.click_login()
         regis_exist.is_login_fail()
 
-    #5  Login using incorrect email format
+    #5  test_login using incorrect email format
     def test_login_invalid_email_address(self):
         #without @
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
@@ -90,21 +88,21 @@ class TestRegistrationExistingMembership():
         regis_exist.click_login()
         regis_exist.is_login_fail()
 
-    #6  Login without filling email field
+    #6  test_login without filling email field
     def test_login_email_address_empty(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.input_password(self.password)
         regis_exist.click_login()
         regis_exist.is_login_fail()
 
-    #7  Login without filling password field
+    #7  test_login without filling password field
     def test_login_password_empty(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.input_email_address(self.email)
         regis_exist.click_login()
         regis_exist.is_login_fail()
 
-    #8  Login without filling email & password field
+    #8  test_login without filling email & password field
     def test_login_mandatory_fields_empty(self):
         driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
         regis_exist.click_login()

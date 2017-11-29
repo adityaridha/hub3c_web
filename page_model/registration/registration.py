@@ -105,10 +105,10 @@ class Registration(object):
         try:
             WebDriverWait(self.driver, 30).until(
                 EC.presence_of_element_located((By.XPATH, "//button[contains(text(),'Log in')]")))
-            print("Registration success")
+            print("test_registration success")
         except TimeoutException:
             self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\registration_failed.png")
-            pytest.fail("Registration Failed")
+            pytest.fail("test_registration Failed")
 
     def is_company_name_exist(self):
         try:
