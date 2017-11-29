@@ -28,7 +28,7 @@ class Registration_Existing_Membership (object):
             self.driver.find_element_by_id(self.field_password_id)
             self.driver.find_element_by_id(self.button_login_id)
             self.driver.find_element_by_xpath(self.dropdown_salutation)
-            self.driver.find_element_by_xpath(self.dropdown_salutation_select_salutation)
+            self.driver.find_element_by_xpath(self.dropdown_select_salutation)
             print("\nall element ready")
         except NoSuchElementException:
             pytest.fail("Some element not ready")

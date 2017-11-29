@@ -15,6 +15,8 @@ from faker import Factory
 driver = Connection.driver
 regis = Registration(driver)
 
+URL_TEST = "https://test-z5y5zwrh0g.hub3c.com/Join/Index"
+
 class TestRegistration():
 
     fake = Factory.create()
@@ -29,7 +31,7 @@ class TestRegistration():
 
     #1  Register by inputting all fields
     def test_registration(self):
-        driver.get("https://test-z5y5zwrh0g.hub3c.com/Join/Index")
+        driver.get(URL_TEST)
         regis.input_company_name(self.company_name)
         regis.select_salutation()
         regis.input_first_name(self.first_name)

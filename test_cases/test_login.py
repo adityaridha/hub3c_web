@@ -22,4 +22,12 @@ class TestLogin():
         login.sign_in()
         login.is_login_success()
 
+    def test_login_wrong_password(self):
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/")
+        login.input_email("marsha@freehub.com")
+        login.input_password("wrong pasword")
+        login.sign_in()
+        login.is_login_success()
+
+
 
