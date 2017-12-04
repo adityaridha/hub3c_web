@@ -9,7 +9,7 @@ import pytest
 class Forgot(object):
 
     field_email_address_id = "Email"
-    button_reset = "//button[contains(text(),'Get Reset Link')]"
+    button_reset = "/html/body/div/div[2]/div/form/div[2]/input"
 
     def __init__(self, driver):
         self.driver = driver
@@ -29,7 +29,7 @@ class Forgot(object):
         print("input email")
 
     def click_reset(self):
-        reset_el = self.driver.find_element_by_xpath(self.button_login)
+        reset_el = self.driver.find_element_by_xpath(self.button_reset)
         self.driver.execute_script("arguments[0].click();", reset_el) #using script so can be adjustable when using PhantomJS
 
     def is_reset_success(self):
@@ -48,6 +48,15 @@ class Forgot(object):
             print("Unregistered email ")
         except TimeoutException:
             self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\display_warning_invalid_credentials_failed.png")
+            pytest.fail("Warning was not displayed")
+
+    def is_email_address_invalid(self):
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Email address is invalid.')]")))
+            print("Email is invalid")
+        except TimeoutException:
+            self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\display_warning_email_address_empty_failed.png")
             pytest.fail("Warning was not displayed")
 
     def is_email_address_empty(self):

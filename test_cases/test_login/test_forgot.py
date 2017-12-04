@@ -19,14 +19,14 @@ class TestForgotPassword():
 
     #1 test_reset using registered & correct email
     def test_forgot_password_success(self):
-        driver.get("https://test-z5y5zwrh0g.hub3c.com")
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
         forgot_password.input_email_address(self.email)
         forgot_password.click_reset()
         forgot_password.is_reset_success()
 
     #2 test_reset using unregistered email
     def test_forgot_password_fail(self):
-        driver.get("https://https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
         forgot_password.input_email_address("testingggemail@mailinator.com")
         forgot_password.click_reset()
         forgot_password.is_reset_fail()
@@ -34,14 +34,14 @@ class TestForgotPassword():
     #3 test_reset using incorrect email format
     def test_forgot_password_incorrect(self):
         # without @
-        driver.get("https://https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
         forgot_password.input_email_address("automation.hub999mailinator.com")
         forgot_password.click_reset()
-        forgot_password.is_reset_fail()
+        forgot_password.is_email_address_invalid()
 
         # without .
         time.sleep(2)
-        driver.get("https://https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
         forgot_password.input_email_address("automation.hub999@mailinatorcom")
         forgot_password.click_reset()
-        forgot_password.is_reset_fail()
+        forgot_password.is_email_address_invalid()
