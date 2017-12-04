@@ -25,10 +25,10 @@ class TestLogin():
         login.input_password(self.password)
         login.click_login()
         login.is_login_success()
-        driver.get("https://test-z5y5zwrh0g.hub3c.com/Account/SignOut")
 
     #2  test_login using registered email & wrong password
     def test_login_fail(self):
+        driver.get("https://test-z5y5zwrh0g.hub3c.com/Account/SignOut")
         driver.get("https://test-z5y5zwrh0g.hub3c.com/")
         login.input_email_address(self.email)
         login.input_password("ZXasqw")

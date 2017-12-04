@@ -5,6 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import pytest
+import time
+
+from connection import Connection
+driver = Connection.driver
 
 class Login(object):
 
@@ -13,6 +17,10 @@ class Login(object):
     button_login = "//button[contains(text(),'Log in')]"
     link_registration = "/html/body/div[1]/div/div[1]/div/a[1]"
     link_forgot_password = "/html/body/div[1]/div/div[1]/div/a[2]"
+    dropdown_select_company = "/html/body/div[1]/div/div/div/div[1]/span"
+    button_ok_id = "btnSubmit"
+    dropdown_switch_company_id = "btn-account-selector"
+    dropdown_company_list1 = "https://test-z5y5zwrh0g.hub3c.com/Account/SelectAccount?businessID=3411&memberID=2929"
 
     def __init__(self, driver):
         self.driver = driver
@@ -24,6 +32,10 @@ class Login(object):
             self.driver.find_element_by_xpath(self.button_login)
             self.driver.find_element_by_xpath(self.link_registration)
             self.driver.find_element_by_xpath(self.link_forgot_password)
+            self.driver.find_element_by_xpath(self.dropdown_select_company)
+            self.driver.find_element_by_id(self.button_ok_id)
+            self.driver.find_element_by_id(self.dropdown_switch_company_id)
+            self.driver.find_element_by_xpath(self.dropdown_company_list1)
             print("\nall element ready")
         except NoSuchElementException:
             pytest.fail("Some element not ready")
@@ -52,6 +64,28 @@ class Login(object):
         forgot_el = self.driver.find_element_by_link_text("Forgot your password?")
         forgot_el.click()
 
+    def select_company(self, seq):
+        scompany_el = self.driver.find_element_by_xpath(self.dropdown_select_company)
+        scompany_el.click()
+        time.sleep(2)
+
+        for x in range(seq):
+            scompany_el.send_keys(Keys.ARROW_DOWN)
+
+        scompany_el.send_keys(Keys.ENTER)
+        print("select company")
+
+    def select_company_from_profile(self):
+        scompany_el = self.driver.find_element_by_id(self.dropdown_switch_company_id)
+        scompany_el.click()
+        comp_list = self.driver.find_element_by_xpath("//*[contains(text(), 'Auto Andrea - Admin')]")
+        comp_list.click()
+        print("select company")
+
+    def click_ok(self):
+        ok_el = self.driver.find_element_by_id(self.button_ok_id)
+        self.driver.execute_script("arguments[0].click();", ok_el) #using script so can be adjustable when using PhantomJS
+
     def is_login_success(self):
         try:
             WebDriverWait(self.driver, 30).until(
@@ -60,6 +94,21 @@ class Login(object):
         except TimeoutException:
             self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\login_failed.png")
             pytest.fail("test_login Failed")
+
+    def is_url_correct(self, url):
+        if driver.current_url == url :
+            print("Correct URL")
+        else:
+            pytest.fail("Wrong URL")
+
+    def is_company_name_correct(self, company_name):
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//*[contains(text(), $company_name)]")))
+            print("Company name is correct")
+        except TimeoutException:
+            self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\display_warning_invalid_credentials_failed.png")
+            pytest.fail("Company name not found/false")
 
     def is_login_fail(self):
         try:
