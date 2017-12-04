@@ -15,7 +15,7 @@ login = page_model.Login(driver)
 
 class TestLogin():
 
-    email = "automation.hub2@mailinator.com"
+    email = "marsha@freehub.com"
     password = "ZXasqw12"
 
     #1  test_login using registered email & correct password

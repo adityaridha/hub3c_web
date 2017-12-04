@@ -13,13 +13,13 @@ from connection import Connection
 driver = Connection.driver
 forgot_password = page_model.Forgot(driver)
 
-class ForgotPassword():
+class TestForgotPassword():
 
     email = "marsha@freehub.com"
 
     #1 test_reset using registered & correct email
     def test_forgot_password_success(self):
-        driver.get("https://https://test-z5y5zwrh0g.hub3c.com/Account/RecoverPassword")
+        driver.get("https://test-z5y5zwrh0g.hub3c.com")
         forgot_password.input_email_address(self.email)
         forgot_password.click_reset()
         forgot_password.is_reset_success()
