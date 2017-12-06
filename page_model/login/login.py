@@ -20,7 +20,8 @@ class Login(object):
     dropdown_select_company = "/html/body/div[1]/div/div/div/div[1]/span"
     button_ok_id = "btnSubmit"
     dropdown_switch_company_id = "btn-account-selector"
-    dropdown_company_list1 = "https://test-z5y5zwrh0g.hub3c.com/Account/SelectAccount?businessID=3411&memberID=2929"
+    dropdown_company_list1 = "/html/body/aside[3]/figure/div[3]/nav/ul/li[3]/a"
+    dropdown_company_list2 = "/html/body/aside[3]/figure/div[3]/nav/ul/li[4]/a"
 
     def __init__(self, driver):
         self.driver = driver
@@ -36,6 +37,7 @@ class Login(object):
             self.driver.find_element_by_id(self.button_ok_id)
             self.driver.find_element_by_id(self.dropdown_switch_company_id)
             self.driver.find_element_by_xpath(self.dropdown_company_list1)
+            self.driver.find_element_by_xpath(self.dropdown_company_list2)
             print("\nall element ready")
         except NoSuchElementException:
             pytest.fail("Some element not ready")
@@ -75,10 +77,19 @@ class Login(object):
         scompany_el.send_keys(Keys.ENTER)
         print("select company")
 
-    def select_company_from_profile(self):
+    def select_company_from_profile1(self):
         scompany_el = self.driver.find_element_by_id(self.dropdown_switch_company_id)
         scompany_el.click()
-        comp_list = self.driver.find_element_by_xpath("//*[contains(text(), 'Auto Andrea - Admin')]")
+        time.sleep(3)
+        comp_list = self.driver.find_element_by_xpath(self.dropdown_company_list1)
+        comp_list.click()
+        print("select company")
+
+    def select_company_from_profile2(self):
+        scompany_el = self.driver.find_element_by_id(self.dropdown_switch_company_id)
+        scompany_el.click()
+        time.sleep(3)
+        comp_list = self.driver.find_element_by_xpath(self.dropdown_company_list2)
         comp_list.click()
         print("select company")
 
