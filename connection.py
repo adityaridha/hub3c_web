@@ -2,4 +2,9 @@ from selenium import webdriver
 
 class Connection():
 
-    driver = webdriver.Chrome()
+    # ############################ browser configuration
+    options = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
+
+    driver = webdriver.Chrome(chrome_options=options)
+

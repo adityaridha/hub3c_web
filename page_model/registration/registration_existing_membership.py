@@ -14,10 +14,7 @@ class Registration_Existing_Membership (object):
     button_login_id = "button-login"
     dropdown_salutation = "/html/body/div[1]/div[3]/div[2]/div[2]/div[1]/form/div[2]/span"
     dropdown_select_salutation = "//*[contains(text(), 'Please select salutation')]"
-    #field_first_name_id = "FirstName"
-    #field_last_name_id = "LastName"
-    #button_tnc = "html/body/div[1]/div[3]/div[2]/div[2]/div[1]/form/div[7]/label"
-    #button_create_id = "button-submit"
+    link_forgot_password = "/html/body/div[1]/div[3]/div[2]/div[2]/div[2]/section/form/div/div[3]/div/a"
 
     def __init__(self, driver):
         self.driver = driver
@@ -28,7 +25,6 @@ class Registration_Existing_Membership (object):
             self.driver.find_element_by_id(self.field_password_id)
             self.driver.find_element_by_id(self.button_login_id)
             self.driver.find_element_by_xpath(self.dropdown_salutation)
-            self.driver.find_element_by_xpath(self.dropdown_select_salutation)
             print("\nall element ready")
         except NoSuchElementException:
             pytest.fail("Some element not ready")
@@ -55,19 +51,20 @@ class Registration_Existing_Membership (object):
         salutation_el.click()
         time.sleep(2)
         salutation_el.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
-        #time.sleep(1)
-        #mr_el = self.driver.find_element_by_xpath(self.dropdown_salutation_select_salutation)
-        #mr_el.click()
         print("select salutation")
+
+    def go_to_forgot_password(self):
+        forgot_el = self.driver.find_element_by_link_text("I forgot my password")
+        forgot_el.click()
 
     def is_directed_to_registration_page(self):
         try:
             WebDriverWait(self.driver, 30).until(
                 EC.presence_of_element_located((By.ID, "BusinessName")))
-            print("Login success")
+            print("test_login success")
         except TimeoutException:
-            self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\registration_failed.png")
-            pytest.fail("Login Failed")
+            self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\directed_to_registration_page_failed.png")
+            pytest.fail("test_login Failed")
 
     def is_login_fail(self):
         try:
@@ -75,5 +72,6 @@ class Registration_Existing_Membership (object):
                 EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'User Name or Password invalid')]")))
             print("User Name or Password is invalid ")
         except TimeoutException:
-            self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\registration_failed.png")
+            self.driver.get_screenshot_as_file("D:\\works\\hub3c_selenium\\log_test\\display_warning_invalid_credentials_failed.png")
             pytest.fail("Warning was not displayed")
+

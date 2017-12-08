@@ -7,13 +7,12 @@ root = Path(__file__).parents[1]   #get the root directory
 root_model = str(root)
 sys.path.append(root_model)
 
-from page_model import Registration
+import page_model
 from connection import Connection
 from faker import Factory
 
-
 driver = Connection.driver
-regis = Registration(driver)
+regis = page_model.Registration(driver)
 
 URL_TEST = "https://test-z5y5zwrh0g.hub3c.com/Join/Index"
 

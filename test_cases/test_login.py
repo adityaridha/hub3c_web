@@ -13,21 +13,22 @@ from connection import Connection
 driver = Connection.driver
 login = Login(driver)
 
+@pytest.mark.usefixtures("reset_url")
 class TestLogin():
 
     def test_login_logout(self):
-        driver.get("https://test-z5y5zwrh0g.hub3c.com/")
-        login.input_email("marsha@freehub.com")
+        login.input_email_address("marsha@freehub.com")
         login.input_password("ZXasqw12")
-        login.sign_in()
+        login.click_login()
         login.is_login_success()
 
-    def test_login_wrong_password(self):
-        driver.get("https://test-z5y5zwrh0g.hub3c.com/")
-        login.input_email("marsha@freehub.com")
-        login.input_password("wrong pasword")
-        login.sign_in()
+    def test_wrong_login(self):
+        login.input_email_address("marsha@freehub.com")
+        login.input_password("ZXasqw12")
+        login.click_login()
         login.is_login_success()
+
+
 
 
 
