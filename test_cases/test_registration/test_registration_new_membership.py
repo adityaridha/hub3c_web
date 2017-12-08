@@ -3,7 +3,7 @@ import os
 import pytest
 import time
 from pathlib import Path
-root = Path(__file__).parents[1]   #get the root directory
+root = Path(__file__).parents[2]   #get the root directory
 root_model = str(root)
 sys.path.append(root_model)
 
