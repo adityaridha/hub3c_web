@@ -6,5 +6,5 @@ class Connection():
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
 
-    driver = webdriver.Chrome(options)
+    driver = webdriver.Chrome(chrome_options=options)
 
